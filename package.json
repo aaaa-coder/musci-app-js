@@ -1,0 +1,19 @@
+{
+  "name": "music-js",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "code ./ && vite --open",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "vue": "^3.2.16",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
+    "sass": "^1.43.5",
+    "vite": "^2.6.4"
+  }
+}
