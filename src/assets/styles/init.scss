@@ -34,12 +34,13 @@ input,
 select,
 textarea {
   font: 12px/1.5tahoma, arial, \5b8b\4f53;
-  font-size: 14px;
+  font-size: 16 / 750 *100vw;
 }
 html,
 body {
   height: 100%;
   margin: 0;
+  font-size: 18 / 750 *100vw;
 }
 h1,
 h2,
@@ -63,7 +64,7 @@ samp {
   font-family: couriernew, courier, monospace;
 }
 small {
-  font-size: 12px;
+  font-size: 16 / 750 *100vw;
 }
 ul,
 ol {
