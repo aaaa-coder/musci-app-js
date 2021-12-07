@@ -12,7 +12,7 @@
     </div>
 
     <div class="banner">
-      <Banner />
+      <Banner :pic-data="bannerList" />
     </div>
   </div>
 </template>
@@ -21,13 +21,16 @@
 import { getBannerList } from "@/apis/index";
 import { onMounted, defineAsyncComponent, reactive } from "vue";
 import Banner from "./components/Banner.vue";
-
 const AsyncHeader = defineAsyncComponent(() =>
-  import("../../components/Header/index.vue")
+  import("@/components/Header/index.vue")
 );
+let bannerList = reactive([123]);
 async function getBannerImgList() {
-  const data = await getBannerList();
-  console.log(data);
+  const { status, data } = await getBannerList();
+  if (status === 200) {
+    bannerList = JSON.parse(JSON.stringify(data.banners));
+    console.log(bannerList);
+  }
 }
 onMounted(() => {
   getBannerImgList();

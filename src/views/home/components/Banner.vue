@@ -30,10 +30,19 @@
         alt=""
     /></swiper-slide>
   </swiper>
+
+  <div>{{ picData }}</div>
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import {
+  reactive,
+  defineProps,
+  watch,
+  onMounted,
+  watchEffect,
+  createApp,
+} from "vue";
 import SwiperCore, {
   Autoplay,
   Pagination,
@@ -46,13 +55,32 @@ import "swiper/components/pagination/pagination.scss";
 import "swiper/components/navigation/navigation.scss";
 SwiperCore.use([Autoplay, Pagination, EffectCoverflow, Navigation]);
 
+const props = defineProps({
+  picData: Array,
+});
+const app = createApp();
+onMounted(() => {
+  setTimeout(() => {
+    console.log(props.picData);
+  }, 2000);
+  // console.log(picData);
+});
+// watchEffect(()=>{})
+watch(
+  () => props.picData,
+  (newVal) => {
+    console.log(app);
+    console.log(newVal, "99999");
+  },
+  { deep: true, immediate: true }
+);
 let swiper_options = reactive({
   autoplay: {
     disableOnInteraction: true, // 鼠标滑动后继续自动播放
-    delay: 2000, //4秒切换一次
+    delay: 30000, //4秒切换一次
   },
   speed: 500, //切换过渡速度
-  loop: true,
+  // loop: true,
   slidesPerView: "auto", //解决最后一张切换到第一张中间的空白
   centeredSlides: true, //设置slide居中
   spaceBetween: 20,
@@ -77,8 +105,10 @@ let swiper_options = reactive({
 // }
 // FIXED：无法修改pagination样式
 :deep(.swiper-pagination-bullet-active) {
-  color: red;
-  opacity: 1;
+  // color: red;
+  // opacity: 1;
+  background: #bf0b0b !important;
+  // background-color: red;
 }
 // .my-bullet-active {
 //   color: #bf0b0b !important;
