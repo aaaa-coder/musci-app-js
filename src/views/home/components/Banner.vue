@@ -11,13 +11,10 @@
     class="swiper"
     effect="coverflow"
   >
-    <swiper-slide
-      ><img
-        class="my_swiper_imgs"
-        src="../../../assets/images/home/building-6822998__480.jpg"
-        alt=""
+    <swiper-slide v-for="pic in props.data" :key="pic.bannerId"
+      ><img class="my_swiper_imgs" :src="pic.pic" alt=""
     /></swiper-slide>
-    <swiper-slide
+    <!-- <swiper-slide
       ><img
         class="my_swiper_imgs"
         src="../../../assets/images/home/coffee-6487099__340.jpg"
@@ -28,21 +25,12 @@
         class="my_swiper_imgs"
         src="../../../assets/images/home/rhinoceros-6799726__340.jpg"
         alt=""
-    /></swiper-slide>
+    /></swiper-slide> -->
   </swiper>
-
-  <div>{{ picData }}</div>
 </template>
 
 <script setup>
-import {
-  reactive,
-  defineProps,
-  watch,
-  onMounted,
-  watchEffect,
-  createApp,
-} from "vue";
+import { reactive } from "vue";
 import SwiperCore, {
   Autoplay,
   Pagination,
@@ -54,30 +42,12 @@ import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.scss";
 import "swiper/components/navigation/navigation.scss";
 SwiperCore.use([Autoplay, Pagination, EffectCoverflow, Navigation]);
+const props = defineProps({ data: Array });
 
-const props = defineProps({
-  picData: Array,
-});
-const app = createApp();
-onMounted(() => {
-  setTimeout(() => {
-    console.log(props.picData);
-  }, 2000);
-  // console.log(picData);
-});
-// watchEffect(()=>{})
-watch(
-  () => props.picData,
-  (newVal) => {
-    console.log(app);
-    console.log(newVal, "99999");
-  },
-  { deep: true, immediate: true }
-);
 let swiper_options = reactive({
   autoplay: {
     disableOnInteraction: true, // 鼠标滑动后继续自动播放
-    delay: 30000, //4秒切换一次
+    delay: 4000, //4秒切换一次
   },
   speed: 500, //切换过渡速度
   // loop: true,
@@ -106,7 +76,7 @@ let swiper_options = reactive({
 // FIXED：无法修改pagination样式
 :deep(.swiper-pagination-bullet-active) {
   // color: red;
-  // opacity: 1;
+  opacity: 1;
   background: #bf0b0b !important;
   // background-color: red;
 }
@@ -114,4 +84,9 @@ let swiper_options = reactive({
 //   color: #bf0b0b !important;
 //   opacity: 1;
 // }
+.my_swiper_imgs {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
 </style>
