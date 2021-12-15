@@ -41,6 +41,12 @@ body {
   height: 100%;
   margin: 0;
   font-size: 18 / 750 *100vw;
+  &::-webkit-scrollbar {
+    width: 1px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
 }
 h1,
 h2,

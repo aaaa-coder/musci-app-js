@@ -6,50 +6,15 @@
     </div>
 
     <div class="content">
-      <ul class="content_left">
-        <li class="content_left_item">
-          <img
-            src="https://p1.music.126.net/c6Rddgfp3nKG-cPhyn4STg==/109951166485018774.jpg"
-            alt=""
-            class="left_item_img"
-          />
-          <span class="left_item_name common_name"
-            >应该很失落吧 明明相爱却无法在一起</span
-          >
-          <i class="iconfont icon-wuqiongda"></i>
-        </li>
-        <li class="content_left_item">
-          <img
-            src="https://p1.music.126.net/3Xy-JzODrTcbP9v_8rmWmQ==/109951166695442219.jpg"
-            alt=""
-            class="left_item_img"
-          />
-          <span class="left_item_name common_name"
-            >应该很失落吧 明明相爱却无法在一起</span
-          >
-          <i class="iconfont icon-wuqiongda"></i>
-        </li>
-        <li class="content_left_item">
-          <img
-            src="https://p1.music.126.net/UnOO7hTEti9ux3N0_OaGeg==/109951166079367925.jpg"
-            alt=""
-            class="left_item_img"
-          />
-          <span class="left_item_name common_name"
-            >应该很失落吧 明明相爱却无法在一起</span
-          >
-          <i class="iconfont icon-wuqiongda"></i>
-        </li>
-        <li class="content_left_item">
-          <img
-            src="https://p1.music.126.net/c6Rddgfp3nKG-cPhyn4STg==/109951166485018774.jpg"
-            alt=""
-            class="left_item_img"
-          />
-          <span class="left_item_name common_name"
-            >应该很失落吧 明明相爱却无法在一起</span
-          >
-          <i class="iconfont icon-wuqiongda"></i>
+      <i class="iconfont icon-wuqiongda"></i>
+      <ul class="content_left" id="left_list">
+        <li
+          class="content_left_item"
+          v-for="item in props.dynamicMusicList"
+          :key="item.id"
+        >
+          <img :src="item.picUrl" alt="" class="left_item_img" />
+          <span class="left_item_name common_name">{{ item.name }}</span>
         </li>
       </ul>
 
@@ -73,10 +38,52 @@ const props = defineProps({ dynamicMusicList: Array, fixMusicList: Array });
 let bannerList = reactive(props.dynamicMusicList);
 onMounted(() => {
   // bannerList.push(props.dynamicMusicList[0]);
-  console.log(bannerList);
+  // bannerList.push(bannerList[0]);
+  autoplay();
 });
 
-function autoplay() {}
+function autoplay() {
+  let list = document.getElementById("left_list");
+
+  setTimeout(() => {
+    // 克隆第一张图
+    let cloneFirstImg = list.firstElementChild.cloneNode(true);
+    // 将第一张图片添加至图片列表的末尾
+    list.appendChild(cloneFirstImg);
+
+    let index = 0;
+    let lock = true;
+
+    function handleRightBtn() {
+      if (!lock) return;
+      index++;
+      list.style.transform = `translateY(${index * -30.5 + "vw"})`;
+      // 为什么要加过渡? 因为切换到了最后一张假图时会将过渡去掉
+      list.style.transition = "0.5s ease";
+
+      if (index === 3) {
+        index = 0;
+        setTimeout(() => {
+          list.style.transform = `translateY("0px")`;
+          // 取消过渡 500毫秒之后切换第一张
+          list.style.transition = "none";
+        }, 1000);
+      }
+
+      // 关锁
+      lock = false;
+      setTimeout(() => {
+        lock = true;
+      }, 500);
+    }
+    let autoplay = setInterval(handleRightBtn, 2000);
+    // 轮播图借用
+    // 作者：云牧
+    // 链接：https://juejin.cn/post/7032161243431763976
+    // 来源：稀土掘金
+    // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+  }, 500);
+}
 </script>
 
 <style lang="scss" scoped>
@@ -84,6 +91,7 @@ function autoplay() {}
   .recommend_header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10 / 750 * 100vw;
     .recommend_musis_list {
       font-size: 24 / 750 * 100vw;
       font-weight: 700;
@@ -100,15 +108,26 @@ function autoplay() {}
     }
   }
   .content {
+    position: relative;
     display: flex;
-    height: 240 / 750 * 100vw;
+    height: 235 / 750 * 100vw;
     overflow-x: auto;
+    overflow-y: hidden;
     &::-webkit-scrollbar {
       width: 1px;
     }
     &::-webkit-scrollbar-thumb {
       background: transparent;
     }
+    .iconfont {
+      position: absolute;
+      top: 0;
+      left: 120 / 750 * 100vw;
+      color: #fff;
+      font-size: 40 / 750 * 100vw;
+      z-index: 999;
+    }
+
     .common_name {
       padding: 3 / 750 * 100vw;
       display: -webkit-box;
@@ -119,23 +138,15 @@ function autoplay() {}
     }
 
     .content_left {
-      position: relative;
-      overflow: hidden;
       width: 160 / 750 * 100vw;
       height: 100%;
       flex-shrink: 0;
       .content_left_item {
+        margin-bottom: 10 / 750 * 100vw;
         height: 100%;
         .left_item_img {
           width: 100%;
           border-radius: 10 / 750 * 100vw;
-        }
-        .iconfont {
-          position: absolute;
-          top: 0;
-          right: 5 / 750 * 100vw;
-          color: #fff;
-          font-size: 40 / 750 * 100vw;
         }
       }
     }
