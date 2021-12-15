@@ -1,6 +1,6 @@
 <template>
   <div class="header_wrapper">
-    <i class="base_btn iconfont icon-caidan"></i>
+    <i class="base_btn iconfont icon-caidan" @click="handleSetting"></i>
     <div class="header_right">
       <input type="text" class="search_btn" placeholder="请输入搜索内容" />
       <i class="iconfont icon-luyin"></i>
@@ -8,7 +8,15 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import mitt from "mitt";
+const emitter = mitt();
+// let timer = "";
+function handleSetting() {
+  emitter.emit("handleTouch", true);
+}
+</script>
 
 <style lang="scss" scoped>
 .header_wrapper {

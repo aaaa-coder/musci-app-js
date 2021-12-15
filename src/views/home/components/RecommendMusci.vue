@@ -14,7 +14,7 @@
           :key="item.id"
         >
           <img :src="item.picUrl" alt="" class="left_item_img" />
-          <span class="left_item_name common_name">{{ item.name }}</span>
+          <span class="left_item_name omit2">{{ item.name }}</span>
         </li>
       </ul>
 
@@ -25,7 +25,7 @@
           :key="item.id"
         >
           <img :src="item.picUrl" alt="" class="right_img" />
-          <span class="common_name">{{ item.name }}</span>
+          <span class="omit2">{{ item.name }}</span>
         </li>
       </ul>
     </div>
@@ -126,15 +126,6 @@ function autoplay() {
       color: #fff;
       font-size: 40 / 750 * 100vw;
       z-index: 999;
-    }
-
-    .common_name {
-      padding: 3 / 750 * 100vw;
-      display: -webkit-box;
-      text-overflow: ellipsis;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
     }
 
     .content_left {

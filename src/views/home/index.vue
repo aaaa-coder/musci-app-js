@@ -64,6 +64,8 @@
       </ul>
     </footer>
     <!-- 底部footer列表 E -->
+
+    <Slider />
   </div>
 </template>
 
@@ -82,10 +84,12 @@ import Banner from "./components/Banner.vue";
 import MenuList from "./components/MenuList.vue";
 import RecommendMusic from "./components/RecommendMusci.vue";
 import FloorItem from "./components/FloorItem.vue";
+import Slider from "./components/Slider.vue";
 // 数据定义部分 S
 const AsyncHeader = defineAsyncComponent(() =>
   import("@/components/Header/index.vue")
 );
+
 // 轮播图列表
 let bannerList = reactive([]);
 // 菜单列表

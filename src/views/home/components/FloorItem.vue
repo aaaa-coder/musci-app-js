@@ -10,7 +10,7 @@
     <ul class="list">
       <li class="list_item" v-for="item in props.data.data" :key="item.id">
         <img :src="item.picUrl" class="item_img" />
-        <span class="item_name">{{ item.name }}</span>
+        <span class="item_name omit2">{{ item.name }}</span>
       </li>
     </ul>
   </div>
@@ -76,13 +76,6 @@ onMounted(() => {
       height: 150 / 750 * 100vw;
       border-radius: 10 / 750 * 100vw;
       object-fit: cover;
-    }
-    .item_name {
-      display: -webkit-box;
-      text-overflow: ellipsis;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
     }
   }
 }
