@@ -10,11 +10,11 @@
 
 <script setup>
 import { ref } from "vue";
-import mitt from "mitt";
-const emitter = mitt();
-// let timer = "";
+import { useStore } from "vuex";
+const store = useStore();
 function handleSetting() {
-  emitter.emit("handleTouch", true);
+  store.dispatch("slider/handleTouch", true);
+  // console.log(store);
 }
 </script>
 

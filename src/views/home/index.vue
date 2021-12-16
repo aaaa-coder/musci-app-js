@@ -65,7 +65,15 @@
     </footer>
     <!-- 底部footer列表 E -->
 
-    <Slider />
+    <van-popup
+      v-model:show="showSlider"
+      position="left"
+      round
+      duration="1"
+      close-on-click-overlay
+      @closed="handleClose"
+      ><Slider
+    /></van-popup>
   </div>
 </template>
 
@@ -78,16 +86,34 @@ import {
   getNewMv,
   getRecommendRadio,
 } from "@/apis/index";
-import { onMounted, defineAsyncComponent, ref, reactive } from "vue";
+import {
+  onMounted,
+  defineAsyncComponent,
+  ref,
+  reactive,
+  watch,
+  readonly,
+} from "vue";
+import { useStore } from "vuex";
 import { toReactive } from "@vueuse/core";
 import Banner from "./components/Banner.vue";
 import MenuList from "./components/MenuList.vue";
 import RecommendMusic from "./components/RecommendMusci.vue";
 import FloorItem from "./components/FloorItem.vue";
-import Slider from "./components/Slider.vue";
+import Slider from "@/components/Slider/index.vue";
 // 数据定义部分 S
 const AsyncHeader = defineAsyncComponent(() =>
   import("@/components/Header/index.vue")
+);
+
+const show = ref(true);
+const store = useStore();
+const showSlider = ref(false);
+watch(
+  () => store.state.slider.showSetting,
+  (newVal) => {
+    showSlider.value = readonly(newVal);
+  }
 );
 
 // 轮播图列表
@@ -222,9 +248,17 @@ async function getRecommendRadioList() {
     });
   }
 }
-// 底部菜单按下
+/**
+ * 底部菜单按下
+ */
 function handleTouch(index) {
   footerIndex.value = index;
+}
+/**
+ * 关闭弹窗时将setting状态变成false
+ */
+function handleClose() {
+  store.dispatch("slider/handleTouch", false);
 }
 // 方法定义部分 E
 </script>
@@ -268,5 +302,25 @@ function handleTouch(index) {
       color: #f24e49;
     }
   }
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  transition: all 1s;
+}
+:deep(.van-overlay) {
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+:deep(.van-popup) {
+  width: 80%;
+  height: 100%;
+  background: #f5f5f5;
 }
 </style>
