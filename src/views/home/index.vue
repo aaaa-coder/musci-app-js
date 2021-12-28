@@ -4,7 +4,7 @@
     <div class="header">
       <Suspense>
         <template #default>
-          <AsyncHeader />
+          <AsyncHeader page="home" />
         </template>
         <template #fallback>
           <div>Loading...</div>

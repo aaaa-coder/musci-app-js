@@ -34,13 +34,13 @@ input,
 select,
 textarea {
   font: 12px/1.5tahoma, arial, \5b8b\4f53;
-  font-size: 16 / 750 *100vw;
+  font-size: 22 / 750 *100vw;
 }
 html,
 body {
   height: 100%;
   margin: 0;
-  font-size: 18 / 750 *100vw;
+  font-size: 22 / 750 *100vw;
   &::-webkit-scrollbar {
     width: 1px;
   }
@@ -114,6 +114,9 @@ em {
 
 video {
   object-fit: fill;
+}
+div,ul,li{
+  box-sizing: border-box;
 }
 
 #app {

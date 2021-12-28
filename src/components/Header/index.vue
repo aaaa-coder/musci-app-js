@@ -1,29 +1,48 @@
 <template>
   <div class="header_wrapper">
-    <i class="base_btn iconfont icon-caidan" @click="handleSetting"></i>
-    <div class="header_right">
+    <i
+      class="base_btn iconfont"
+      :class="showIcon() && showIcon().leftIcon"
+      @click="handleSetting"
+    ></i>
+    <div v-if="showIcon() && showIcon().page === 'home'" class="header_right">
       <input
         type="text"
         class="search_btn"
         placeholder="请输入搜索内容"
         @click="handleSearch"
       />
-      <i class="iconfont icon-luyin"></i>
+      <i class="iconfont" :class="showIcon() && showIcon().rightIcon"></i>
     </div>
+    <input
+      v-if="showIcon() && showIcon().page === 'search'"
+      type="text"
+      class="search_input"
+      placeholder="评论区过万的热门歌曲"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 const store = useStore();
 const router = useRouter();
+const props = defineProps({ page: String });
+const iconArr = reactive([
+  { page: "home", leftIcon: "icon-caidan", rightIcon: "icon-luyin" },
+  { page: "search", leftIcon: "icon-zuojiantou", rightIcon: "" },
+]);
 
-function handleSetting() {
-  store.dispatch("slider/handleTouch", true);
+function showIcon() {
+  return iconArr.filter((item) => props.page === item.page)[0];
 }
-
+function handleSetting() {
+  props.page === "home"
+    ? store.dispatch("slider/handleTouch", true)
+    : router.push({ name: "home" });
+}
 function handleSearch() {
   router.push({ name: "search" });
 }
@@ -57,6 +76,16 @@ function handleSearch() {
       outline: none;
       border-radius: 30 / 750 * 100vw;
     }
+  }
+
+  .search_input {
+    flex: 1;
+    margin-left: 20 / 750 * 100vw;
+    border: none;
+    height: 40 / 750 * 100vw;
+    font-size: 24 / 750 * 100vw;
+    color: #888;
+    border-bottom: 1px solid #000;
   }
 }
 

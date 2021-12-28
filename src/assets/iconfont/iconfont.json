@@ -6,6 +6,111 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "567549",
+      "name": "piano",
+      "font_class": "piano",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "1319547",
+      "name": "DJ",
+      "font_class": "DJ",
+      "unicode": "e691",
+      "unicode_decimal": 59025
+    },
+    {
+      "icon_id": "1347310",
+      "name": "色块－乐谱",
+      "font_class": "icon-test",
+      "unicode": "e6a1",
+      "unicode_decimal": 59041
+    },
+    {
+      "icon_id": "1601068",
+      "name": "rapper",
+      "font_class": "rapper",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "2508803",
+      "name": "我的追番",
+      "font_class": "wodezhuifan",
+      "unicode": "e6d8",
+      "unicode_decimal": 59096
+    },
+    {
+      "icon_id": "3216222",
+      "name": "音符",
+      "font_class": "icon--",
+      "unicode": "e77f",
+      "unicode_decimal": 59263
+    },
+    {
+      "icon_id": "3900986",
+      "name": "影视",
+      "font_class": "yingshi-yuanwenjian",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "5056523",
+      "name": "机器人-01",
+      "font_class": "jiqiren-",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "5954265",
+      "name": "三角形",
+      "font_class": "sanjiaoxing",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "9080582",
+      "name": "baby",
+      "font_class": "baby",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "15378177",
+      "name": "beats",
+      "font_class": "beats",
+      "unicode": "eb4b",
+      "unicode_decimal": 60235
+    },
+    {
+      "icon_id": "16802426",
+      "name": "agora_-电音",
+      "font_class": "agora_-dianyin",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "18674039",
+      "name": "琵琶",
+      "font_class": "pipa",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "23977947",
+      "name": "线性摇滚图标",
+      "font_class": "xianxingyaoguntubiao",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "1304897",
+      "name": "左箭头",
+      "font_class": "zuojiantou",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
       "icon_id": "57364",
       "name": "天猫-货票同行",
       "font_class": "tianmaohuopiaotongxing",
