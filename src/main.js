@@ -5,7 +5,7 @@ import "./assets/styles/init.scss";
 import "./assets/styles/base.scss";
 import "./assets/iconfont/iconfont.css";
 import store from "./store";
-import { Popup } from "vant";
-import { Overlay } from "vant";
+import vant from "./vant";
+// import { Button } from "vant";
 
-createApp(App).use(router).use(Popup).use(Overlay).use(store).mount("#app");
+createApp(App).use(router).use(vant).use(store).mount("#app");

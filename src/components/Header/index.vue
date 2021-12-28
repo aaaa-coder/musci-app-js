@@ -2,7 +2,12 @@
   <div class="header_wrapper">
     <i class="base_btn iconfont icon-caidan" @click="handleSetting"></i>
     <div class="header_right">
-      <input type="text" class="search_btn" placeholder="请输入搜索内容" />
+      <input
+        type="text"
+        class="search_btn"
+        placeholder="请输入搜索内容"
+        @click="handleSearch"
+      />
       <i class="iconfont icon-luyin"></i>
     </div>
   </div>
@@ -10,11 +15,17 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 const store = useStore();
+const router = useRouter();
+
 function handleSetting() {
   store.dispatch("slider/handleTouch", true);
-  // console.log(store);
+}
+
+function handleSearch() {
+  router.push({ name: "search" });
 }
 </script>
 

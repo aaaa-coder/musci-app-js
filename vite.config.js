@@ -4,7 +4,6 @@ import vue from "@vitejs/plugin-vue";
 // import styleImport from "vite-plugin-style-import";
 import vitePluginImp from "vite-plugin-imp";
 import path from "path";
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -15,11 +14,20 @@ export default defineConfig({
         {
           libName: "vant",
           style(name) {
-            return `vant/es/${name}/index.css`;
+            return `vant/es/${name}/style/index`;
           },
         },
       ],
     }),
+    // styleImport({
+    //   libs: [
+    //     {
+    //       libraryName: "vant",
+    //       esModule: true,
+    //       resolveStyle: (name) => `vant/es/${name}/style/index`,
+    //     },
+    //   ],
+    // }),
   ],
   alias: {
     "@": path.resolve(__dirname, "src"),
